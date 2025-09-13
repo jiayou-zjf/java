@@ -1,1 +1,17 @@
+double sumSequence(int n) {
+    double sum = 0.0;    // 用于累加数列的和，初始为0
+    int num1 = 1;   // 初始化第1项的分子为1
+    int num2 = 2; // 初始化第1项的分母为2
 
+    for (int i = 0; i < n; i++) {
+        // 累加当前项：注意将分子转成double，避免整数除法截断
+        sum += (double) num1 / num2;
+
+        // 递推更新“分子”和“分母”，为下一项做准备
+        int temp = num1;         // 临时保存当前分子
+        num1 = num2;      // 下一项的分子 = 当前分母
+        num2 = temp + num2; // 下一项的分母 = 当前分子 + 当前分母
+    }
+
+    return sum; // 返回前n项的和
+}
